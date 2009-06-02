@@ -135,6 +135,8 @@ public class ChangesDetectorImpl implements ChangesDetector {
     private boolean isScheduled = false;
     
     private Object stateLock = new Object();
+
+	private Thread thread;
     
     public ChangesDetectorImpl() {
         initializeNatives();
@@ -243,7 +245,7 @@ public class ChangesDetectorImpl implements ChangesDetector {
     
     public static void main(String[] args) {
         ChangesDetectorImpl detector = new ChangesDetectorImpl();
-        detector.monitor(new File("/Users/andreyvit"), new ChangesListener() {
+        detector.monitor(new File("/Users/buriy"), new ChangesListener() {
 
             public void pathChanged(String path) {
                 System.out.println("Changed: " + path);
@@ -267,5 +269,8 @@ public class ChangesDetectorImpl implements ChangesDetector {
     public static String removeTrailingSeparator(String directoryPath) {
         return YsPathUtils.removeTrailingSeparator(directoryPath);
     }
-    
+
+	public void run() {
+		CFRunLoopRun();
+	}
 }

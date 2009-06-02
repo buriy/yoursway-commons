@@ -36,6 +36,7 @@ public class FileSystemMonitoringContext {
     }
 
     public void run() {
+    	detector.run();
     }
 
     MonitoringRequest add(File directory, ChangesListener listener) {

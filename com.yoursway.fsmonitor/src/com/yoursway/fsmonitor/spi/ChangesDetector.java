@@ -7,5 +7,7 @@ public interface ChangesDetector {
     MonitoringRequest monitor(File directory, ChangesListener listener);
 
     void dispose();
+
+	void run();
     
 }
