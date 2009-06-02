@@ -1,8 +1,9 @@
 package com.yoursway.utils;
 
-import static com.yoursway.utils.YsPathUtils.isPathSeparator;
-
 import java.io.File;
+import java.io.FilenameFilter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class YsPathUtils {
     
@@ -60,4 +61,29 @@ public class YsPathUtils {
             return second.equals(first);
     }
     
+	public static List<String> findFiles(String path, FilenameFilter filter){
+		List<String> files = new ArrayList<String>();
+		findFiles(path, filter, files);
+		return files;
+	}
+
+	public static void findFiles(String path, FilenameFilter filter, List<String> files){
+		File file = new File(path);
+		if(file.isDirectory()){
+			findFiles(file, filter, files);
+		}else{
+			files.add(path);
+		}
+	}
+	
+	public static List<String> findFiles(File path, FilenameFilter filter, List<String> files){
+		if(path.isDirectory()){
+			String[] entries = path.list(filter);
+			for(String entry: entries){
+				findFiles( joinPath(path.getAbsolutePath(), entry), filter, files);
+			}
+		}
+
+		return files;
+	}
 }

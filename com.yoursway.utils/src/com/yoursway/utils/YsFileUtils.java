@@ -434,7 +434,7 @@ public class YsFileUtils {
     }
     
     public static boolean isBogusFile(String name) {
-        return Pattern.compile("^([._](git|svn|darcs)|CVS|\\.DS_Store)$").matcher(name).find();
+        return Pattern.compile("^([._](git|svn|darcs|bzr)|CVS|\\.DS_Store)$").matcher(name).find();
     }
     
     public static boolean isSameFile(File first, File second) {

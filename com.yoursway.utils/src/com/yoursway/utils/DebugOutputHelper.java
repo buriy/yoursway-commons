@@ -13,7 +13,7 @@ public class DebugOutputHelper {
     private static ThreadLocal<Map<Object, Object>> objectsBeingPrinted = new ThreadLocal<Map<Object, Object>>();
     
     /**
-     * Field values are not used � the only point of them is to avoid
+     * Field values are not used, the only point of them is to avoid
      * "unused field" warnings.
      */
     public static String reflectionBasedToString(Object object, Object... fieldValues) {
